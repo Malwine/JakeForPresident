@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { voteLemongrab, voteFinn, voteJake } from './actions';
 import './App.css';
 
@@ -22,16 +23,17 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.lemongrab);
     return (
       <div>
-        <div className="jumbotron" style={{'textAlign': 'center'}}>
+        <div className="above" style={{'textAlign': 'center'}}>
           <h1>Click on the images to vote your fav character!</h1>
 
           <div className="row">
             <div className="col-4">
               <img src="1.png" height="200" alt="Angular" onClick={this.handleVoteLemongrab}></img>
             </div>
-            
+
             <div className="col-4">
               <img src="2.png" height="200" alt="React" onClick={this.handleVoteFinn}></img>
             </div>
@@ -46,4 +48,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    lemongrab: state.lemongrab
+  }
+}
+
+const connectedApp = connect( mapStateToProps )(App)
+
+export default connectedApp;
