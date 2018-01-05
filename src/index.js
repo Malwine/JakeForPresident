@@ -4,27 +4,23 @@ import { createStore } from 'redux';
 import './index.css';
 import App from './App';
 import Results from './components/results'
-import myApp from './reducers';
-import registerServiceWorker from './registerServiceWorker';
+import myReducer from './reducers';
 
-let store = createStore(myApp);
-
+// create the store
+let store = createStore(myReducer);
 
 function render() {
-    ReactDOM.render(
-        <div className="container">
-            <App store={store}/>
-            <hr/>
-            <Results store={store}/>
-        </div>
-        , 
-        document.getElementById('root')
-    );
+  ReactDOM.render(
+    <div className="container">
+      <App store={store}/>
+      <hr/>
+      <Results store={store}/>
+    </div>
+    ,
+    document.getElementById('root')
+  );
 }
 
+store.subscribe(render); //subscribe the render method to always fire when an action is dispatched
 
-registerServiceWorker();
-
-store.subscribe(render);
-
-render();
+render();  //render the initial state
