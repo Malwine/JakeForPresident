@@ -49,7 +49,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    lemongrab: state.lemongrab
+    lemongrab: state.voteReducer.lemongrab
   }
 }
 

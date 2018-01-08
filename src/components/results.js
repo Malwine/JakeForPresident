@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Results extends Component {
 
@@ -8,20 +9,18 @@ class Results extends Component {
     }
 
     voteCharacterInPercent(character) {
-      let stateLemongrab = this.store.getState().voteReducer.lemongrab;
-      let stateFinn = this.store.getState().voteReducer.finn;
-      let stateJake = this.store.getState().voteReducer.jake;
+      const { lemongrab, finn, jake, votes } = this.props
       let characterState = 0;
 
-      for(var key in this.store.getState().voteReducer) {
+      for(var key in votes) {
 
         if (key === character) {
-          characterState = (this.store.getState().voteReducer)[key];
+          characterState = votes[key];
         }
       }
 
       if (characterState){
-          return (characterState / (stateLemongrab + stateFinn + stateJake)  * 100)
+          return (characterState / (lemongrab + finn + jake)  * 100)
       }
       else {
           return 0;
@@ -66,4 +65,15 @@ class Results extends Component {
     }
 }
 
-export default Results;
+const mapStateToProps = state => {
+  return {
+    lemongrab: state.voteReducer.lemongrab,
+    finn: state.voteReducer.finn,
+    jake: state.voteReducer.jake,
+    votes: state.voteReducer
+  }
+}
+
+const ConnectedResults = connect( mapStateToProps )(Results)
+
+export default ConnectedResults;
