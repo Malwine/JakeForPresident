@@ -23,7 +23,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.lemongrab);
     return (
       <div>
         <div className="above" style={{'textAlign': 'center'}}>

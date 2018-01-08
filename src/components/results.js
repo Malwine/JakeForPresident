@@ -8,14 +8,15 @@ class Results extends Component {
     }
 
     voteCharacterInPercent(character) {
-      let stateLemongrab = this.store.getState().lemongrab;
-      let stateFinn = this.store.getState().finn;
-      let stateJake = this.store.getState().jake;
+      let stateLemongrab = this.store.getState().voteReducer.lemongrab;
+      let stateFinn = this.store.getState().voteReducer.finn;
+      let stateJake = this.store.getState().voteReducer.jake;
       let characterState = 0;
 
-      for(var key in this.store.getState()) {
+      for(var key in this.store.getState().voteReducer) {
+
         if (key === character) {
-          characterState = (this.store.getState())[key];
+          characterState = (this.store.getState().voteReducer)[key];
         }
       }
 

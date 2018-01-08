@@ -4,13 +4,13 @@ import { createStore } from 'redux';
 import './index.css';
 import App from './App';
 import Results from './components/results'
-import myReducer from './reducers';
+import myReducer from './reducers/index';
 
 // create the store
 let store = createStore(myReducer);
 
 function render() {
-  ReactDOM.render(
+  ReactDOM.render(  //this render function is called whenever state changes
     <div className="container">
       <App store={store}/>
       <hr/>
